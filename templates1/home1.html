@@ -1,0 +1,16 @@
+{% extends ' %} {% block content %}
+
+<form action="register" method="post">
+  {% csrf_token %} 
+  
+  <input type="text" name="user" placeholder="User Name"><br>
+  <input type="text" name="f_name" placeholder="First Name"><br>
+  <input type="text" name="l_name" placeholder="Last Name"><br>
+  <input type="email" name="email" placeholder="Email id"><br>
+  <input type="password" name="password1" placeholder="Password"><br>
+  <input type="password" name="password2" placeholder="Confirm Password"><br>
+  <input type="submit" />
+
+</form>
+
+{% endblock %}

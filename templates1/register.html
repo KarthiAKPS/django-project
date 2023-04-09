@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script>
+        function myfun(){
+            var a = document.getElementById("password1").value;
+            var b = document.getElementById("password2").value;
+            if(a!=b){
+                document.getElementById("messages").innerHTML="Passwords do not match"
+                return False;
+            }
+            if(a=='' || b==''){
+                document.getElementById("messages1").innerHTML="Please enter a password"
+                return False;
+            }
+        }
+    </script>
+</head>
+<body bgcolor="cyan">
+    <form action="register" method="post" >
+        {% csrf_token %} 
+        
+        <input type="text" name="user_name" placeholder="User Name"><br>
+        <input type="text" name="f_name" placeholder="First Name"><br>
+        <input type="text" name="l_name" placeholder="Last Name"><br>
+        <input type="email" name="email" placeholder="Email id"><br>
+        <input type="password" name="password1" placeholder="Password"><br>
+        <input type="password" name="password2" placeholder="Confirm Password"><br>
+        <input type="submit" value="Submit" />
+      
+      </form>
+    <div>
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+</body>
+</html>
