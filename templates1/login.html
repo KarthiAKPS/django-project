@@ -6,13 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
-<body bgcolor="cyan">
+<body bgcolor="white">
+    <script>
+        function myfun(){
+            var a = document.getElementById("password").value;
+            var b = document.getElementById("user_name").value;
+            if(a == ''){
+                document.getElementById("messages").innerHTML="Please Enter the Password"
+                return false;
+            }
+            if(b == ''){
+                document.getElementById("messages1").innerHTML="Please enter a User Name"
+                return false;
+            }
+        }
+    </script>
     <form action="login" method="post" >
         {% csrf_token %} 
         
-        <input type="text" name="user_name" placeholder="User Name"><br>
-        <input type="password" name="password" placeholder="Password"><br>
+        <input type="text" name="user_name" id="user_name" placeholder="User Name"><span id="messages1"></span><br>
+        <input type="password" name="password" id="password" placeholder="Password"><span id="messages"></span><br>
         <input type="submit" value="Submit" />
+        <p>Not a member? <a href="register">Register here!</a></p>
       
       </form>
     <div>
