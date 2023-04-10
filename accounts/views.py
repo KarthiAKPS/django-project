@@ -7,17 +7,13 @@ def login(request):
     if request.method == 'POST':
         username = request.POST['user_name']
         password = request.POST['password']
-        if username is "" or password is "":
-            messages.info(request,"Fill the above details")
-            return redirect('login')
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')
         else:
-            user = auth.authenticate(username=username, password=password)
-            if user is not None:
-                auth.login(request, user)
-                return redirect('/')
-            else:
-                messages.info(request, 'invalid cresentials')
-                return redirect('login')
+            messages.info(request, 'invalid cresentials, Try again!')
+            return redirect('login')
     else:
         return render(request, 'login.html')
 
@@ -31,27 +27,23 @@ def register(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
         print(username, email, password1, password2,first_name,last_name)
-        if username is "" or email is "" or first_name is "" or last_name is "" or password1 is "" or password2 is "":
-            messages.info(request,"Fil the above details")
-            return redirect('register')
-        else:
-            if password1 == password2:
-                if User.objects.filter(username=username).exists():
-                    print("user name already exists")
-                    messages.info(request,'Username Taken')
-                    return redirect('register')
-                elif User.objects.filter(email=email).exists():
-                    print("user email already exists")
-                    messages.info(request,'email already exists')
-                    return redirect('register')
-                else:
-                    usr = User.objects.create_user( username = username,email = email, password = password1, first_name=first_name, last_name=last_name)
-                    usr.save()
-                    return redirect('login')
-            else:
-                print('password not matching')
-                messages.info(request,'password not matching')
+        if password1 == password2:
+            if User.objects.filter(username=username).exists():
+                print("user name already exists")
+                messages.info(request,'Username Taken')
                 return redirect('register')
+            elif User.objects.filter(email=email).exists():
+                print("user email already exists")
+                messages.info(request,'email already exists')
+                return redirect('register')
+            else:
+                usr = User.objects.create_user( username = username,email = email, password = password1, first_name=first_name, last_name=last_name)
+                usr.save()
+                return redirect('login')
+        else:
+            print('password not matching')
+            messages.info(request,'password not matching')
+            return redirect('register')
     
     else:
         return render(request, 'register.html')
