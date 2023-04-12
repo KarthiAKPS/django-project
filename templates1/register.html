@@ -2,7 +2,9 @@
 {% static "images" as baseUrl %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <link rel="icon" href="{% static 'images/letter-t-icon-21.jpg' %}" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +12,7 @@
     <title>Register</title>
     
 </head>
+
 <body bgcolor="white">
     <script>
         function myfun(){
@@ -25,19 +28,39 @@
     <form onsubmit="return myfun();" action="register" method="post" >
         {% csrf_token %} 
         
-        <input type="text" name="user_name" id="user_name" placeholder="User Name" autocomplete="on" required autofocus><br>
-        <input type="text" name="f_name" id="f_name" placeholder="First Name" autocomplete="on" required><br>
-        <input type="text" name="l_name" id="l_name" placeholder="Last Name" autocomplete="on" required><br>
-        <input type="email" name="email" id="email" placeholder="Email" autocomplete="on" required><br>
-        <input type="password" name="password1" id="password1" placeholder="Password" required><br>
-        <input type="password" name="password2" id="password2" placeholder="Confirm Password" required><span id="messages" style="color:red"></span><br>
+        <p>
+            <label for="user_name">User Name</label>
+            <input type="text" name="user_name" id="user_name" placeholder="Antman56." autocomplete="on" required autofocus>
+        </p>
+        <p>
+            <label for="f_name">First Name</label>
+            <input type="text" name="f_name" id="f_name" placeholder="Dave" autocomplete="on" required>
+        </p>
+        <p>
+            <label for="l_name">Last Name</label>
+            <input type="text" name="l_name" id="l_name" placeholder="Lee" autocomplete="on" required>
+        </p>
+        <p>
+            <label for="email">Email ID</label>
+            <input type="email" name="email" id="email" placeholder="davelee@gmail.com" autocomplete="on" required>
+        </p>
+        <p>
+            <label for="password1">Password</label>
+            <input type="password" name="password1" id="password1" placeholder="123$aBc" required>
+        </p>
+        <p>
+            <label for="password2">Confirm Password</label>
+            <input type="password" name="password2" id="password2" placeholder="123$aBc" required><span id="messages" style="color:red"></span>
+        </p>
         <input type="submit" value="Submit" >
       
-      </form>
+    </form>
+
     <div>
         {% for message in messages %}
         <h3>{{message}}</h3>
         {% endfor %}
     </div>
+
 </body>
 </html>
