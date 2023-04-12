@@ -15,31 +15,7 @@
         function myfun(){
             var a = document.getElementById("password1").value;
             var b = document.getElementById("password2").value;
-            var c = document.getElementById("user_name").value;
-            var d = document.getElementById("f_name").value;
-            var e = document.getElementById("l_name").value;
-            var f = document.getElementById("email").value;
 
-            if(c==''){
-                document.getElementById("messages2").innerHTML="Please enter an User Name"
-                return false;
-            }
-            if(d==''){
-                document.getElementById("messages3").innerHTML="Please enter a First Name"
-                return false;
-            }
-            if(e==''){
-                document.getElementById("messages4").innerHTML="Please enter a Last Name"
-                return false;
-            }
-            if(f==''){
-                document.getElementById("messages5").innerHTML="Please enter an email id"
-                return false;
-            }
-            if(a=='' || b==''){
-                document.getElementById("messages1").innerHTML="Please fill password fields"
-                return false;
-            }
             if(a!=b){
                 document.getElementById("messages").innerHTML="Passwords do not match"
                 return false;
@@ -49,12 +25,12 @@
     <form onsubmit="return myfun();" action="register" method="post" >
         {% csrf_token %} 
         
-        <input type="text" name="user_name" id="user_name" placeholder="User Name"><span id="messages2" style="color:red"></span><br>
-        <input type="text" name="f_name" id="f_name" placeholder="First Name"><span id="messages3" style="color:red"></span><br>
-        <input type="text" name="l_name" id="l_name" placeholder="Last Name"><span id="messages4" style="color:red"></span><br>
-        <input type="email" name="email" id="email" placeholder="Email"><span id="messages5" style="color:red"></span><br>
-        <input type="password" name="password1" id="password1" placeholder="Password"><span id="messages" style="color:red"></span><br>
-        <input type="password" name="password2" id="password2" placeholder="Confirm Password"><span id="messages1" style="color:red"></span><br>
+        <input type="text" name="user_name" id="user_name" placeholder="User Name" autocomplete="on" required autofocus><br>
+        <input type="text" name="f_name" id="f_name" placeholder="First Name" autocomplete="on" required><br>
+        <input type="text" name="l_name" id="l_name" placeholder="Last Name" autocomplete="on" required><br>
+        <input type="email" name="email" id="email" placeholder="Email" autocomplete="on" required><br>
+        <input type="password" name="password1" id="password1" placeholder="Password" required><br>
+        <input type="password" name="password2" id="password2" placeholder="Confirm Password" required><span id="messages" style="color:red"></span><br>
         <input type="submit" value="Submit" >
       
       </form>
