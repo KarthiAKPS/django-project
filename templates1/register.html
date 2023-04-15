@@ -10,19 +10,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     
 </head>
 
 <body bgcolor="white">
+    <py-script>
+        import random
+        def pyfunction():
+            length = random.randint(8,16)
+            list1=[]
+            for i in range(0,length):
+                list1.append(chr(random.randint(32,126)))
+            password = ''.join(list1)
+        pyscript.write('python', password)
+        </py-script>
     <script>
         function myfun(){
             var a = document.getElementById("password1").value;
             var b = document.getElementById("password2").value;
 
             if(a!=b){
-                document.getElementById("messages").innerHTML="Passwords do not match"
+                document.getElementById("messages").innerHTML="Passwords do not match";
                 return false;
             }
+        }
+
+        function myfunction(){
+            var password = "{{password}}";
+            document.getElementById("password1").value = password;
         }
     </script>
     <form onsubmit="return myfun();" action="register" method="post" >
@@ -52,7 +69,9 @@
             <label for="password2">Confirm Password</label>
             <input type="password" name="password2" id="password2" placeholder="123$aBc" required><span id="messages" style="color:red"></span>
         </p>
+        <div id="python"></div>
         <input type="submit" value="Submit" >
+        <button onclick="pyfunction();myfunction()">create a random password</button>
       
     </form>
 
