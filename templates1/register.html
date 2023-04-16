@@ -17,15 +17,14 @@
 
 <body bgcolor="white">
     <py-script>
-        import random
-        def pyfunction():
-            length = random.randint(8,16)
-            list1=[]
-            for i in range(0,length):
-                list1.append(chr(random.randint(32,126)))
-            password = ''.join(list1)
-        pyscript.write('python', password)
-        </py-script>
+    import random
+    length = random.randint(8,16)
+    list1=[]
+    for i in range(0,length):
+        list1.append(chr(random.randint(32,126)))
+    password = ''.join(list1)
+    pyscript.write('python', password)
+    </py-script>
     <script>
         function myfun(){
             var a = document.getElementById("password1").value;
@@ -36,42 +35,44 @@
                 return false;
             }
         }
-
+    </script>
+    <script>
         function myfunction(){
-            var password = "{{password}}";
+            var password = PyScript.interpreter.globals.get('password');
             document.getElementById("password1").value = password;
-        }
+       } 
     </script>
     <form onsubmit="return myfun();" action="register" method="post" >
         {% csrf_token %} 
         
         <p>
             <label for="user_name">User Name</label>
-            <input type="text" name="user_name" id="user_name" placeholder="Antman56." autocomplete="on" required autofocus>
+            <input type="text" name="user_name" id="user_name" placeholder="Antman56." autocomplete="on" >
         </p>
         <p>
             <label for="f_name">First Name</label>
-            <input type="text" name="f_name" id="f_name" placeholder="Dave" autocomplete="on" required>
+            <input type="text" name="f_name" id="f_name" placeholder="Dave" autocomplete="on" >
         </p>
         <p>
             <label for="l_name">Last Name</label>
-            <input type="text" name="l_name" id="l_name" placeholder="Lee" autocomplete="on" required>
+            <input type="text" name="l_name" id="l_name" placeholder="Lee" autocomplete="on" value="keyan" >
         </p>
         <p>
             <label for="email">Email ID</label>
-            <input type="email" name="email" id="email" placeholder="davelee@gmail.com" autocomplete="on" required>
+            <input type="email" name="email" id="email" placeholder="davelee@gmail.com" autocomplete="on" >
         </p>
         <p>
             <label for="password1">Password</label>
-            <input type="password" name="password1" id="password1" placeholder="123$aBc" required>
+            <input type="password" name="password1" id="password1" placeholder="123$aBc" >
         </p>
         <p>
             <label for="password2">Confirm Password</label>
-            <input type="password" name="password2" id="password2" placeholder="123$aBc" required><span id="messages" style="color:red"></span>
+            <input type="password" name="password2" id="password2" placeholder="123$aBc" ><span id="messages" style="color:red"></span>
         </p>
         <div id="python"></div>
+        <!-- <button onclick="mypass()">create random password</button> -->
+        <button onclick="myfunction()" action="">fill the random password</button>
         <input type="submit" value="Submit" >
-        <button onclick="pyfunction();myfunction()">create a random password</button>
       
     </form>
 
