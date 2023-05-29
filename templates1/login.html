@@ -5,33 +5,38 @@
 
 <head>
     <link rel="icon" href="{% static 'images/letter-t-icon-21.jpg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}" type="text/css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 
-<body bgcolor="white">
+<body>
+    <div class="loginbox">
+    <img src="{% static 'images/avatar.jpg' %}"" class="avatar"/>
+    <h1>Login Here</h1>
     <form action="login" method="post" >
         {% csrf_token %} 
         
         <p>
-            <label for="user_name">User Name</label>
-            <input type="text" name="user_name" id="user_name" placeholder="Antman56." required autocomplete="on">
+            <label for="user_name">Username</label>
+            <input type="text" name="user_name" id="user_name" placeholder="Enter your username" required autocomplete="on">
         </p>
         <p>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="123$aBc" required>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
         </p>
         <input type="submit" value="Submit">
-        <p>Not a member? <a href="register">Register here!</a></p>
+        <p class="textbelow">Not a member? <a href="register">Register here!</a></p>
       
     </form>
 
-    <div>
+    <div class="textbelow-1">
         {% for message in messages %}
         <h3>{{message}}</h3>
         {% endfor %}
+    </div>
     </div>
 
 </body>

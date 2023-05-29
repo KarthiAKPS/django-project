@@ -10,56 +10,107 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="{% static 'styles/register.css' %}" type="text/css">
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     
 </head>
 
 <body bgcolor="white">
+    <py-script>
+    import random
+    password = 'hello'
+    def mypass():
+        document.getElementById('python').textContent = ''
+        length = random.randint(8,16)
+        list1=[]
+        for i in range(0,length):
+            list1.append(chr(random.randint(32,126)))
+        passwordpy = ''.join(list1)
+        display(passwordpy, target='python')
+    </py-script>
+
+    <script>
+        function copyToClipboard(text) {
+        const type = 'text/plain';
+        const blob = new Blob([text], {type});
+        const data = [new ClipboardItem({[type]: blob})];
+        navigator.clipboard.write(data).then(function() {
+        console.log('Copied to clipboard!');
+        alert("Password copied to clipboard!");
+        document.getElementById('python').textContent = text;
+        }, function() {
+        console.log('Failed to copy to clipboard.');
+        });
+        }
+        </script>
+
     <script>
         function myfun(){
             var a = document.getElementById("password1").value;
             var b = document.getElementById("password2").value;
 
             if(a!=b){
-                document.getElementById("messages").innerHTML="Passwords do not match"
+                document.getElementById("messages").innerHTML="Passwords do not match";
                 return false;
             }
         }
     </script>
+    <!--<script>
+        function myfunction(){
+            var password = pyscript.interpreter.globals.get('passwordpy');
+            password = pyscript.to_js(password)
+            document.getElementById("password1").value = password;
+            return password
+       }-->
+    </script>
+    <div class="loginbox">
+        <img src="{% static 'images/avatar.jpg' %}"" class="avatar"/>
     <form onsubmit="return myfun();" action="register" method="post" >
         {% csrf_token %} 
         
         <p>
             <label for="user_name">User Name</label>
-            <input type="text" name="user_name" id="user_name" placeholder="Antman56." autocomplete="on" required autofocus>
+            <input type="text" name="user_name" id="user_name" placeholder="Enter your username" autocomplete="on" required autofocus>
         </p>
         <p>
             <label for="f_name">First Name</label>
-            <input type="text" name="f_name" id="f_name" placeholder="Dave" autocomplete="on" required>
+            <input type="text" name="f_name" id="f_name" placeholder="Enter your first name" autocomplete="on" required>
         </p>
         <p>
             <label for="l_name">Last Name</label>
-            <input type="text" name="l_name" id="l_name" placeholder="Lee" autocomplete="on" required>
+            <input type="text" name="l_name" id="l_name" placeholder="Enter your last name" autocomplete="on" required>
         </p>
         <p>
             <label for="email">Email ID</label>
-            <input type="email" name="email" id="email" placeholder="davelee@gmail.com" autocomplete="on" required>
+            <input type="email" name="email" id="email" placeholder="Enter your email id" autocomplete="on" required>
         </p>
         <p>
             <label for="password1">Password</label>
-            <input type="password" name="password1" id="password1" placeholder="123$aBc" required>
+            <input type="password" name="password1" id="password1" placeholder="Enter a strong password" required>
         </p>
+        <div class="long">
         <p>
             <label for="password2">Confirm Password</label>
-            <input type="password" name="password2" id="password2" placeholder="123$aBc" required><span id="messages" style="color:red"></span>
+            <input type="password" name="password2" id="password2" placeholder="Re-enter the password" required><span id="messages" style="color:red"></span>
         </p>
-        <input type="submit" value="Submit" >
+        </div>
+        <input type="submit" value="Submit">
       
     </form>
 
+    <div id="python" class="passw"></div>
+
     <div>
+    <button class="suggest" py-click="mypass()" action="">Suggest Strong Password</button></div>
+    <div >
+    <button class="copy" onclick="copyToClipboard(document.getElementById('python').textContent)">Copy</button></div>
+    <!--<button onclick="myfunction()">Fill it in</button>-->
+
+    <div class="textbelow">
         {% for message in messages %}
         <h3>{{message}}</h3>
         {% endfor %}
+    </div>
     </div>
 
 </body>
