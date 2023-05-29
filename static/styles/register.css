@@ -1,0 +1,142 @@
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    background: url(../images/portal.jpg);
+    background-size: 100%;
+    background-position: top;
+    background-repeat: no-repeat;
+  }
+  
+  .loginbox {
+    width: 800px;
+    height: 540px;
+    border-radius:10px;
+    background: #fff;
+    color: #000;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing:border-box;
+    padding:20px;
+    padding-top:40px;
+  } 
+  
+  h1 {
+    margin-top: 35px;
+    text-align: center;
+    font-size: 22px;
+    padding: 0 0 10px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    left:calc(50% - 50px);
+    top: -50px;
+  }
+  
+  .loginbox p{
+    font-weight:bold;
+  }
+
+  .loginbox input{
+    margin-left: 100px;
+    width:50%;
+    margin-bottom: 0px;
+  }
+
+  .long p input{
+    margin-left:30px;}
+
+  .loginbox input[type="email"]{
+    margin-left:116px;
+  }
+
+  .loginbox input[type="text"], input[type="password"], input[type="email"]{
+    border:none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+  .loginbox p label {
+    cursor: pointer;
+  }
+
+  .loginbox input[type="submit"]{
+    background-color: darkcyan;
+    height:40px;
+    font-size:18px;
+    border-radius: 20px;
+    margin-left:200px;
+    margin-top:10px;
+  }
+
+  .loginbox input[type="submit"]:hover {
+    background-color: #000;
+    color:#fff;
+    cursor: pointer;
+  }
+
+  .loginbox a{
+    text-decoration:none;
+    color: darkcyan;
+    font-size: 14px;
+  }
+
+  .textbelow{
+    font-size: 14px;
+    font-weight:normal;
+  }
+
+  .suggest {
+    background-color: black;
+    color:white;
+    height:40px;
+    font-size:18px;
+    border-radius: 20px;
+    margin-top:10px;
+    position:absolute;
+    bottom:-16px;
+  }
+
+  .copy {
+    background-color: black;
+    color:white;
+    height:36px;
+    font-size:18px;
+    border-radius: 18px;
+    margin-top:10px;
+    position:absolute;
+    bottom:27px;
+    left:186px;
+  }
+
+  button:hover{
+    background-color: white;
+    color:black;
+    cursor: pointer;
+  }
+
+  .passw {
+    padding-left:10px;
+    padding-top:10px;
+    margin-left:1px;
+    margin-top:20px;
+    height:24px;
+    width:210px;
+    background:white;
+    border:1px solid black;
+    border-radius:17px;
+  }
+
+  .passw:hover {
+    cursor: pointer;
+  }
